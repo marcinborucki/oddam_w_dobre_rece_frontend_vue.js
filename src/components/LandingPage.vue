@@ -1,5 +1,6 @@
 <template>
-  <div class="hello">
+<div>
+<header-app/>
     <section id="stats" class="stats">
       <div class="container container--85">
         <div class="stats--item">
@@ -89,41 +90,36 @@
           </li>
 
         </ul>
-
-
-      </div>
-
-    </section>
-
-    
-   
-  </div>
-</template>
+ </div>
+</section>
+  <footer-app />
+   </div>
+  </template>
 
 <script>
+import '../assets/js/app.js'
+import header from '../components/Header.vue'
+import footer from '../components/Footer.vue'
 export default {
+  name: 'LandingPage',
+  components: {
+      'header-app': header,
+      'footer-app': footer,
+  },
   data() {
     return{
       sum: null,
       count: null
     };
   },
-  mounted: function () {
-    let mapScript = document.createElement('script')
-    mapScript.setAttribute('src', '../assets/js/app.js')
-    document.head.appendChild(mapScript)
-  },
-  created() {
-    fetch('http://localhost:8081/api/donations/sum')
-          .then(response => response.json())
-      .then(data => (this.sum = data));
 
-      fetch('http://localhost:8081/api/donations/count')
+  created() {
+    fetch('http://localhost:8081/api/donations/')
           .then(response => response.json())
-      .then(data => (this.count = data));
+      .then(data => (this.sum = data.sum)(this.count = data.count)); 
   }
   
-}
+  }
 </script>
 
 <style scoped>

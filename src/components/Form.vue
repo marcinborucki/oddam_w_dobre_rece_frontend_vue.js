@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+  <header-app />
   <section class="form--steps">
       <div class="form--steps-instructions">
         <div class="form--steps-container">
@@ -246,17 +247,20 @@
         </form>
       </div>
     </section>
+     <footer-app />
   </div>
 </template>
 
 <script>
-
+import '../assets/js/app.js'
+import header from '../components/Header.vue'
+import footer from '../components/Footer.vue'
 export default {
-  mounted: function () {
-    let mapScript = document.createElement('script')
-    mapScript.setAttribute('src', '../assets/js/app.js')
-    document.head.appendChild(mapScript)
-  }
+  components: {
+      'header-app': header,
+      'footer-app': footer,
+  },
+ 
   
 }
 </script>

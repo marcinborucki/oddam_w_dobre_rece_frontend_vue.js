@@ -1,15 +1,18 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import LandingPage from "../components/LandingPage";
-import Form from "../components/Form";
-Vue.use(VueRouter);
-export default new VueRouter({
+import Vue from "vue"
+import Router from "vue-router"
+import Form from '@/components/Form'
+import LandingPage from '@/components/LandingPage'
+Vue.use(Router)
+
+export default new Router({
 routes: [{
         path:"/form",
+        name: 'Form',
         component: Form
 },
 {
         path:"/",
+        name:'LandingPage',
         component: LandingPage
 }
 ]

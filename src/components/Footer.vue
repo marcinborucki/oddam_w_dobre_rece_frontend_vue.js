@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="footer">
    <footer>
       <div id="contact" class="contact">
         <h2>Skontaktuj się z nami</h2>
@@ -24,13 +24,9 @@
 </template>
 
 <script>
-
+import '../assets/js/app.js'
 export default {
-  mounted: function () {
-    let mapScript = document.createElement('script')
-    mapScript.setAttribute('src', '../assets/js/script.js')
-    document.head.appendChild(mapScript)
-  }
+  
   
 }
 </script>
