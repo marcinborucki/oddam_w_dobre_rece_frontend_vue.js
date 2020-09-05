@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# oddam_w_dobre_rece_frontend_vue.js
-=======
 # oddamwdobrerece_vue
 
 ## Project setup
@@ -25,4 +22,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
->>>>>>> d21782a... init
+# test
