@@ -29,7 +29,7 @@
           <div data-step="1" class="active">
             <h3>Zaznacz co chcesz oddać:</h3>
 
-            <div class="form-group form-group--checkbox">
+            <div v-for="cat in category" :key="cat.id" class="form-group form-group--checkbox">
               <label>
                 <input
                   type="checkbox"
@@ -38,44 +38,8 @@
                 />
                 <span class="checkbox"></span>
                 <span class="description"
-                  >ubrania, które nadają się do ponownego użycia</span
+                  >{{cat.name}}</span
                 >
-              </label>
-            </div>
-
-            <div class="form-group form-group--checkbox">
-              <label>
-                <input
-                  type="checkbox"
-                  name="categories"
-                  value="clothes-useless"
-                />
-                <span class="checkbox"></span>
-                <span class="description">ubrania, do wyrzucenia</span>
-              </label>
-            </div>
-
-            <div class="form-group form-group--checkbox">
-              <label>
-                <input type="checkbox" name="categories" value="toys" />
-                <span class="checkbox"></span>
-                <span class="description">zabawki</span>
-              </label>
-            </div>
-
-            <div class="form-group form-group--checkbox">
-              <label>
-                <input type="checkbox" name="categories" value="books" />
-                <span class="checkbox"></span>
-                <span class="description">książki</span>
-              </label>
-            </div>
-
-            <div class="form-group form-group--checkbox">
-              <label>
-                <input type="checkbox" name="categories" value="other" />
-                <span class="checkbox"></span>
-                <span class="description">inne</span>
               </label>
             </div>
 
@@ -260,6 +224,16 @@ export default {
       'header-app': header,
       'footer-app': footer,
   },
+  data() {
+    return{
+      category: []
+    };
+  },
+  created() {
+    fetch('http://localhost:8081/api/categories')
+          .then(response => response.json())
+      .then(categories => (this.category = categories)); 
+  }
  
   
 }
