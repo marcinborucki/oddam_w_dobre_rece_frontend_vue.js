@@ -66,30 +66,20 @@
 
         <ul class="help--slides-items">
           <li>
-            <div class="col">
-              <div class="title">Fundacja "Dbam o Zdrowie"</div>
-              <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
-            </div>
-
-            <div class="col">
-              <div class="title">Fundacja "A kogo"</div>
-              <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>
+            <div class="col" v-for="inst in this.even" v-bind:key="inst.id"  >
+              <div class="title" v-if="even" >{{inst.name}}</div>
+              <div class="subtitle" v-if="even">{{inst.description}}</div>
             </div>
           </li>
-
-          <li>
-            <div class="col">
-              <div class="title">Fundacja “Dla dzieci"</div>
-              <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>
-            </div>
-            <div class="col">
-              <div class="title">Fundacja “Bez domu”</div>
-              <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
-            </div>
-
-          </li>
-
         </ul>
+        <ul class="help--slides-items">
+          <li>
+            <div class="col" v-for="inst in this.noeven" v-bind:key="inst.id"  >
+              <div class="title" v-if="noeven" >{{inst.name}}</div>
+              <div class="subtitle" v-if="noeven">{{inst.description}}</div>
+            </div>
+          </li>
+      </ul>
  </div>
 </section>
   <footer-app />
@@ -100,6 +90,7 @@
 import '../assets/js/app.js'
 import header from '../components/Header.vue'
 import footer from '../components/Footer.vue'
+import axios from "axios"
 export default {
   name: 'LandingPage',
   components: {
@@ -109,7 +100,8 @@ export default {
   data() {
     return{
       sum: null,
-      count: null
+      count: null,
+      institutions: [],
     };
   },
 
@@ -117,7 +109,18 @@ export default {
     fetch('http://localhost:8081/api/donations/')
           .then(response => response.json())
       .then(data => (this.sum = data.sum)(this.count = data.count)); 
-  }
+      axios.get(`http://localhost:8081/api/institutions`)
+    .then(response => {this.institutions = response.data
+    })
+       },
+       computed: {
+    even: function() {
+      return this.institutions.filter(i => i.id % 2 != 0)
+    }  ,  
+    noeven: function() {
+      return this.institutions.filter(i => i.id % 2 == 0)
+    }  
+}
   
   }
 </script>
